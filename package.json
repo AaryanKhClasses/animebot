@@ -4,7 +4,8 @@
   "description": "AnimeBot",
   "main": "index.js",
   "scripts": {
-    "test": "an!ping"
+    "test": "an!ping",
+    "node .": "node run index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/AaryanKhClasses/animebot#readme",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^12.3.1",
+    "request": "^2.88.2"
   }
 }

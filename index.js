@@ -13,6 +13,9 @@ for(const file of commandFiles){
     bot.commands.set(command.name, command);
 }
 
+const cheerio = require('cheerio');
+const request = require('request');
+
 bot.on('ready', () => {
     console.log('AnimeBot is online!');
     bot.user.setActivity("AaryanKh's Server", {type: "WATCHING"}).catch(console.error);
@@ -23,10 +26,14 @@ bot.on('message', message => {
     let args = message.content.slice(prefix.length).split(" ");
     const commandName = args.shift().toLowerCase();
     
-    if (commandName === 'ping') 
-    {
-        bot.commands.get('ping').execute(message, args);
-    } 
+    if (!bot.commands.has(commandName)) "There's no such command!";
+
+    try {
+	    bot.commands.get(commandName).execute(message, args);
+    } catch (error) {
+	    console.error(error);
+	    message.reply('There was an error trying to execute that command!');
+    }
 })
 
 bot.login(token);
