@@ -13,8 +13,9 @@ for(const file of commandFiles){
     bot.commands.set(command.name, command);
 }
 
+const cooldowns = new Discord.Collection();
 const cheerio = require('cheerio');
-const request = require('request');
+const request = require('request'); 
 
 bot.on('ready', () => {
     console.log('AnimeBot is online!');
@@ -24,16 +25,37 @@ bot.on('ready', () => {
 bot.on('message', message => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     let args = message.content.slice(prefix.length).split(" ");
-    const commandName = args.shift().toLowerCase();
+    const command = args.shift().toLowerCase();
     
-    if (!bot.commands.has(commandName)) "There's no such command!";
+    if (!bot.commands.has(command)) "There's no such command!";
+
+    if (!cooldowns.has(command.cmd)) {
+        cooldowns.set(command.cmd, new Discord.Collection());
+    }
+    
+    const now = Date.now();
+    const timestamps = cooldowns.get(command.cmd);
+    const cooldownAmount = 3000;
+    
+    if (timestamps.has(message.author.id)) {
+        if (timestamps.has(message.author.id)) {
+            const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+        
+            if (now < expirationTime) {
+                const timeLeft = (expirationTime - now);
+                return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.cmd}\` command.`);
+            }
+            timestamps.set(message.author.id, now);
+            setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+        }
+    }
 
     try {
-	    bot.commands.get(commandName).execute(message, args);
+	    bot.commands.get(command).execute(message, args);
     } catch (error) {
 	    console.error(error);
 	    message.reply('There was an error trying to execute that command!');
     }
 })
 
-bot.login(token);
+bot.login(token); 
