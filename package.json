@@ -1,0 +1,22 @@
+{
+  "name": "animebot",
+  "version": "1.0.0",
+  "description": "AnimeBot",
+  "main": "index.js",
+  "scripts": {
+    "test": "an!ping"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaryanKhClasses/animebot.git"
+  },
+  "author": "Aaryan Khedekar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AaryanKhClasses/animebot/issues"
+  },
+  "homepage": "https://github.com/AaryanKhClasses/animebot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
