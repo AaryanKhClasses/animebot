@@ -3,6 +3,6 @@ module.exports = {
     cmd: 'Ping',
     description: 'This Pings the Bot!',
     execute(message, args){ 
-        message.channel.send('AnimeBot is online!');
+        message.channel.send(`AnimeBot is online! Version: 1.0`);
     }
 }
