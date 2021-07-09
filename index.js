@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const {Client, MessageAttachment} = require('discord.js');
 const bot = new Discord.Client();
-const token = 'NzY1ODI0MzUxODQwMTA4NTc1.X4abgQ.DqafxoxGf9HeAuH5K-Pi-Ps0VIk';
+const token = '<archived>';
 const prefix = 'an!';
 // var version = '1.0.0'; This will be found in version.js
 
